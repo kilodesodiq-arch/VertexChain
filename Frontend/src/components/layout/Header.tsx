@@ -1,29 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin } from "lucide-react";
 import Image from "next/image";
+import { MapPin } from "lucide-react";
 
-export default function Header() {
+export function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-around  bg-[--header-background] backdrop-blur-sm">
-      <Link href="/" className="flex items-center ">
-        <Image
-          src="/gistPin-header-logo.png"
-          alt="GistPin Logo"
-          width={100}
-          height={100}
-        />{" "}
-      </Link>
-      <nav className="flex items-center space-x-4">
-        {/* You can update these links too, e.g., text-[--foreground-muted] */}
-        <Link
-          href="/map"
-          className="text-gray-600 transition-colors dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-        >
-          <MapPin className="w-10 h-12  text-blue-500" />
-        </Link>
-      </nav>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[--header-background] backdrop-blur-sm border-b border-[--border-color]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/gistPin-header-logo.png"
+              alt="VertexChain Logo"
+              width={32}
+              height={32}
+              className="rounded-lg"
+            />
+            <span className="text-lg font-semibold text-[--text-primary]">
+              VertexChain
+            </span>
+          </Link>
+          <nav className="flex items-center gap-4">
+            <Link
+              href="/map"
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-[--text-secondary] hover:text-[--text-primary] transition-colors rounded-lg hover:bg-[--hover-bg]"
+            >
+              <MapPin className="w-4 h-4" />
+              Map
+            </Link>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }

@@ -1,6 +1,6 @@
-# GistPin Frontend
+# VertexChain Frontend
 
-This is the **GistPin web frontend**, built with **Next.js**, responsible for:
+This is the **VertexChain web frontend**, built with **Next.js**, responsible for:
 - Displaying nearby gists on a map
 - Allowing users to drop anonymous gists
 - Interacting with the Flare smart contract and backend API
@@ -27,3 +27,4 @@ This app is for **end users** who want to explore and contribute hyperlocal cont
 ### Install
 ```bash
 npm install
+```

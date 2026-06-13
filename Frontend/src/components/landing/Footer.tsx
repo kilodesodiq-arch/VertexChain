@@ -1,12 +1,23 @@
-export default function Footer() {
+export function Footer() {
   return (
-    <footer className="py-8 bg-[#111827]">
-      <div className="max-w-5xl px-4 mx-auto text-center text-gray-500">
-        <p>
-          &copy; {new Date().getFullYear()} GistPin. Powered by the Flare
-          Network.
-        </p>
-        {/* Add social links here in the future */}
+    <footer className="bg-[--footer-bg] border-t border-[--border-color]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-[--text-muted]">
+            &copy; {new Date().getFullYear()} VertexChain. Powered by the Flare Network.
+          </p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy" className="text-sm text-[--text-muted] hover:text-[--text-primary] transition-colors">
+              Privacy
+            </Link>
+            <Link href="/terms" className="text-sm text-[--text-muted] hover:text-[--text-primary] transition-colors">
+              Terms
+            </Link>
+            <Link href="/docs" className="text-sm text-[--text-muted] hover:text-[--text-primary] transition-colors">
+              Docs
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

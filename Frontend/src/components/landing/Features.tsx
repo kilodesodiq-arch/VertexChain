@@ -96,7 +96,7 @@ export const Features: React.FC = () => {
           </Badge>
           <h2 className="text-2xl sm:text-3xl font-bold mb-2">The Hyperlocal Information Hub</h2>
           <p className="text-gray-400 text-sm sm:text-base">
-            GistPin brings together anonymous, real-world events and conversations into a single, interactive map.
+            VertexChain brings together anonymous, real-world events and conversations into a single, interactive map.
           </p>
         </div>
 
@@ -110,7 +110,7 @@ export const Features: React.FC = () => {
                 y={centerY}
                 className="text-white w-16 h-16 sm:w-20 sm:h-20 text-sm font-bold"
               >
-                <Image src="/gistPin-header-logo.png" alt="Gistpin Icon" width={80} height={80} className="object-contain" priority />
+                <Image src="/gistPin-header-logo.png" alt="VertexChain Icon" width={80} height={80} className="object-contain" priority />
               </Circle>
 
               {icons.map(({ Icon, color, x, y, px, py }, index) => (

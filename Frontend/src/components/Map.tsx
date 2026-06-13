@@ -27,7 +27,7 @@ export default function Map() {
       />
       {/* Use the new greenIcon here */}
       <Marker position={position} icon={greenIcon}>
-        <Popup>A green GistPin from Abuja! 🇳🇬</Popup>
+        <Popup>A green VertexChain marker from Abuja! 🇳🇬</Popup>
       </Marker>
     </MapContainer>
   );
