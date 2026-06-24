@@ -19,16 +19,55 @@ jobs:
   generate-api-docs:
     name: API Docs
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: vertexchain_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: Backend/package-lock.json
+
+      - name: Install Backend dependencies
+        run: cd Backend && npm ci
+
       - name: Generate OpenAPI and static docs
+        env:
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_NAME: vertexchain_test
         run: |
           version="${{ github.event.release.tag_name }}"
           if [ -z "$version" ]; then version="$(date +%Y.%m.%d)"; fi
           bash infrastructure/scripts/generate-api-docs.sh "$version"
+
+      - name: Upload OpenAPI spec artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: openapi-spec
+          path: |
+            infrastructure/docs/openapi.json
+            infrastructure/docs/openapi.yaml
+          if-no-files-found: error
 
       - name: Commit API docs
         run: |

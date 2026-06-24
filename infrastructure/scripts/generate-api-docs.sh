@@ -17,18 +17,16 @@ mkdir -p "$(dirname "${spec_output}")" "${site_output}" "$(dirname "${version_fi
 version="${1:-$(date +%Y.%m.%d)}"
 echo "${version}" > "${version_file}"
 
-cat > "${spec_output}" <<EOF
-{
-  "openapi": "3.0.0",
-  "info": {
-    "title": "VertexChain API",
-    "version": "${version}"
-  },
-  "paths": {}
-}
-EOF
+# Export real OpenAPI spec from NestJS app
+cd Backend
+npm run export-spec
+cd ..
 
-cat > "${site_output}/index.html" <<EOF
+# Copy YAML output alongside JSON
+cp infrastructure/docs/openapi.yaml "$(dirname "${spec_output}")/openapi.yaml"
+
+# Generate minimal static site
+cat > "${site_output}/index.html" <<HTMLEOF
 <!doctype html>
 <html>
   <head><meta charset="utf-8"><title>VertexChain API Docs</title></head>
@@ -43,6 +41,6 @@ cat > "${site_output}/index.html" <<EOF
     </script>
   </body>
 </html>
-EOF
+HTMLEOF
 
 echo "Generated API docs for version ${version}"
